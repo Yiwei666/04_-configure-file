@@ -1,0 +1,75 @@
+{
+"sniffing": {
+    "enabled": true,
+    "destOverride": ["http", "tls"]
+},
+  "log": {
+    "loglevel": "warning",
+    "access": "/var/log/v2ray/access.log", 
+    "error": "/var/log/v2ray/error.log"
+  },  
+  "inbounds": [
+    {
+      "listen":"127.0.0.1",
+      "port": 10086,                                        # 替换
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "37537e7d-1394-4116-adaa-fb75dd636389",   # 替换
+            "level": 1,
+            "alterId": 0
+          }
+        ]
+      },
+            "streamSettings": {
+                "network": "ws",
+                "wsSettings": {
+                "path": "/dir/subdir"                       # 替换
+                }
+            }
+    }
+  ],
+ "outbounds": [
+        {
+            "tag": "default",
+            "protocol": "freedom"
+        },
+        {
+            "tag":"socks_out",
+            "protocol": "socks",
+            "settings": {
+                "servers": [
+                     {
+                        "address": "127.0.0.1",
+                        "port": 50000                       # 替换
+                    }
+                ]
+            }
+        }
+    ],
+    "routing": {
+        "rules": [
+            {
+                "type": "field",
+                "outboundTag": "socks_out",
+                "domain": [
+                  "openai.com",
+                  "api.openai.com",
+                  "beta.openai.com",
+                  "blog.openai.com",
+                  "cdn.openai.com",
+                  "s3-us-west-2.amazonaws.com",
+                  "chat.openai.com",
+                  "ip138.com",
+                  "bing.com"
+                    ]
+            },
+            {
+                "type": "field",
+                "outboundTag": "default",
+                "network": "udp,tcp"
+            }
+        ]
+    }
+}

@@ -62,7 +62,9 @@
                   "s3-us-west-2.amazonaws.com",
                   "chat.openai.com",
                   "ip138.com",
-                  "bing.com"
+                  "bing.com",
+                  "scholar.google.com",
+                  "whoer.net"
                     ]
             },
             {

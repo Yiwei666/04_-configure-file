@@ -20,11 +20,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "domian.com",                                   # 替换
+            "address": "domian.com",                                   // 替换
             "port": 443,
             "users": [
               {
-                "id": "62da4cc6-55e1-46d3-87db-38531bba917f",          # 替换
+                "id": "62da4cc6-55e1-46d3-87db-38531bba917f",          // 替换
                 "alterId": 0
               }
             ]
@@ -35,7 +35,7 @@
         "network": "ws",
         "security": "tls",
         "wsSettings": {
-          "path": "dir/sub_dir"                                        # 替换
+          "path": "dir/sub_dir"                                        // 替换
         }
       }
     },
@@ -50,24 +50,24 @@
       {
         "type": "field",
         "outboundTag": "direct",
-        "domain": ["baidu.com","zhihu.com","sciencedirect.com","acs.org","notion.so","csdn.net"]        # 替换
+        "domain": ["baidu.com","zhihu.com","notion.so","csdn.net","sciencedirect.com","acs.org","wiley.com","nature.com","rsc.org","science.org","springer.com","taylorandfrancis.com","aps.org","mdpi.com"]        // 替换
       },
       {
         "type": "field",
         "outboundTag": "direct",
-        "ip": ["111.222.333.444","ip2","ip3"]                         # 替换
+        "ip": ["111.222.333.444","ip2","ip3"]                         // 替换
       },
       {
         "type": "field",
         "outboundTag": "direct",
-        "domain": ["geosite:cn"] // 中国大陆主流网站的域名
+        "domain": ["geosite:cn"]                                      // 中国大陆主流网站的域名
       },
       {
         "type": "field",
         "outboundTag": "direct",
         "ip": [
-          "geoip:cn", // 中国大陆的 IP
-          "geoip:private" // 私有地址 IP，如路由器等
+          "geoip:cn",                                                 // 中国大陆的 IP
+          "geoip:private"                                             // 私有地址 IP，如路由器等
         ]
       }
     ]

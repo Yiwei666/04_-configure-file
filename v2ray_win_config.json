@@ -51,7 +51,7 @@
         "type": "field",
         "outboundTag": "direct",
         "domain": ["baidu.com","zhihu.com","notion.so","csdn.net","sciencedirect.com","acs.org","wiley.com","nature.com","rsc.org",
-                   "science.org","springer.com","taylorandfrancis.com","aps.org","mdpi.com","cnki.net","aip.org"]        // 替换
+                   "science.org","springer.com","taylorandfrancis.com","aps.org","mdpi.com","cnki.net","aip.org","pnas.org"]        // 替换
       },
       {
         "type": "field",

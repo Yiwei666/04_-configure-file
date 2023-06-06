@@ -60,6 +60,11 @@
       },
       {
         "type": "field",
+        "outboundTag": "vmessproxy",
+        "domain": ["google.com","ip138.com","ipaddress.com","douyin.com"]    // 指定必须走代理的网站，主要是一些国内网站
+      },
+      {
+        "type": "field",
         "outboundTag": "direct",
         "domain": ["geosite:cn"]                                      // 中国大陆主流网站的域名
       },

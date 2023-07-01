@@ -12,7 +12,7 @@ nginx -t
 
 nginx配置文件路径
 ```
-/etc/nginx/nginx.conf         // ubuntu系统
+/etc/nginx/nginx.conf         # ubuntu系统
 ```
 
 注意事项：   
@@ -50,7 +50,15 @@ user www-data;       # ubuntu系统默认www-data
 ```
 相比于centos，有删除，新增和修改
 
-### 04_warp-v2ray-
+### v2ray配置文件
+
+文件路径
+```
+/usr/local/etc/v2ray/config.json                       # centos系统
+
+```
+
+
 warp/v2ray配置文件
 
 [uuid generator](https://www.uuidgenerator.net/)

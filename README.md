@@ -80,6 +80,29 @@ server {
 
 ```
 
+**例如将本地回环地址8000端口的服务反向代理到api.domian.com子域名上**  
+
+如果服务使用docker应用提供，那么docker应用配置文件中的域名也应当改为子域名
+
+```
+    server {
+        listen 443 ssl;
+        server_name api.domain.com; # 替换为您的域名
+        ssl_certificate /etc/nginx/key_crt/domain.com.crt; # 替换为您下载的证书文件路径
+        ssl_certificate_key /etc/nginx/key_crt/domain.com.key; # 替换为您下载的密钥文件路径
+        ssl_protocols TLSv1.2 TLSv1.3; # 选择您需要支持的 SSL/TLS 协议版本
+
+        location / {
+            proxy_pass http://127.0.0.1:8000; # 替换为您Node.js应用的监听地址
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+        }
+    }
+```
 
 
 ### v2ray配置文件

@@ -56,6 +56,9 @@ user www-data;       # ubuntu系统默认www-data
 ```
 /usr/local/etc/v2ray/config.json                       # centos系统
 
+jq . /usr/local/etc/v2ray/config.json                  # 部分校验语法正确性
+
+
 ```
 
 

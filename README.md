@@ -10,6 +10,11 @@
 nginx -t
 ```
 
+路径
+```
+/etc/nginx/nginx.conf         // ubuntu系统
+```
+
 注意事项：   
 1. ubuntu系统和centos系统的配置文件略有不同，总体一样，server中的部分基本可以复制，需要注意的地方会强调，比如    
 ```

@@ -10,7 +10,7 @@
 nginx -t
 ```
 
-路径
+nginx配置文件路径
 ```
 /etc/nginx/nginx.conf         // ubuntu系统
 ```

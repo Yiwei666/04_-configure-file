@@ -22,7 +22,7 @@ user nginx;          # centos系统默认user
 user www-data;       # ubuntu系统默认www-data
 ```
 
-2. php配置文件  
+**2. php配置文件**  
 
 对于centos系统（digitalocean），php部分的配置为   
 ```
@@ -50,11 +50,43 @@ user www-data;       # ubuntu系统默认www-data
 ```
 相比于centos，有删除，新增和修改
 
+**3. nginx配置文件中同时使用主域名和子域名**
+```
+server {
+    listen 443 ssl;
+    server_name example.com www.example.com;
+    
+    ssl_certificate /path/to/ssl_certificate.crt;
+    ssl_certificate_key /path/to/ssl_certificate.key;
+    
+    location / {
+        # 主域名的请求处理逻辑
+        ...
+    }
+}
+
+server {
+    listen 443 ssl;
+    server_name subdomain.example.com;
+    
+    ssl_certificate /path/to/ssl_certificate.crt;
+    ssl_certificate_key /path/to/ssl_certificate.key;
+    
+    location / {
+        # 子域名的请求处理逻辑
+        ...
+    }
+}
+
+```
+
+
+
 ### v2ray配置文件
 
 文件路径
 ```
-/usr/local/etc/v2ray/config.json                       # centos系统
+/usr/local/etc/v2ray/config.json                       # centos中v2ray配置文件路径
 
 jq . /usr/local/etc/v2ray/config.json                  # 部分校验语法正确性
 

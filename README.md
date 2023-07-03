@@ -5,6 +5,7 @@
 ```
 
 ### nginx配置文件
+
 判断cenots系统中nginx配置文件语法是否正确的命令
 ```
 nginx -t

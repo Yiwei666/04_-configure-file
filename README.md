@@ -107,7 +107,7 @@ server {
 
 ### v2ray配置文件
 
-文件路径
+linux中v2ray配置文件路径，配置方案：VMess-WS-TLS 
 ```
 /usr/local/etc/v2ray/config.json                       # centos中v2ray配置文件路径
 

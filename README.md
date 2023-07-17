@@ -51,6 +51,17 @@ user www-data;       # ubuntu系统默认www-data
 ```
 相比于centos，有删除，新增和修改
 
+php安装后的测试脚本
+
+```
+<?php
+phpinfo();
+
+```
+
+将上述代码命名为 php-info.php
+
+
 **3. nginx配置文件中同时使用主域名和子域名**
 ```
 server {

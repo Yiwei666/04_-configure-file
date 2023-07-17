@@ -28,7 +28,7 @@ user www-data;       # ubuntu系统默认www-data
 对于centos系统（digitalocean），php部分的配置为   
 ```
         location ~ \.php$ {
-        	root /home/01_dir;                                                                                # 替换
+        	root /home/01_html;                                                                          # 注意修改php文件根目录
         	try_files $uri =404;
         	fastcgi_pass unix:/var/run/php-fpm/www.sock;
         	fastcgi_index index.php;
@@ -40,7 +40,7 @@ user www-data;       # ubuntu系统默认www-data
 对于ubuntu系统（azure），php部分的配置为
 ```
         location ~ \.php$ {
-            root /home/01_dir;
+            root /home/01_html;                                                                            # 注意修改php文件根目录
 #            try_files $uri =404;                                                                          # 删除
             fastcgi_pass unix:/run/php/php7.4-fpm.sock;                                                    # 修改
 #            fastcgi_index index.php;                                                                      # 删除
@@ -49,7 +49,7 @@ user www-data;       # ubuntu系统默认www-data
             include snippets/fastcgi-php.conf;                                                             # 新增
         }
 ```
-相比于centos，有删除，新增和修改
+相比于centos，有删除，新增和修改。注意修改php文件根目录
 
 php安装后的测试脚本
 

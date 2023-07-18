@@ -61,7 +61,7 @@
       {
         "type": "field",
         "outboundTag": "vmessproxy",
-        "domain": ["google.com","ip138.com","ipaddress.com","douyin.com","tiktok.com"]    // 指定必须走代理的网站，主要是一些国内网站
+        "domain": ["google.com","ip138.com","ipaddress.com","douyin.com","tiktok.com","github.com"]    // 指定必须走代理的网站，主要是一些国内网站
       },
       {
         "type": "field",

@@ -7,7 +7,7 @@
 ```
 
 
-### 项目结构
+### ubuntu安装PHP
 ---
 
 - **nginx_ubuntu.conf**

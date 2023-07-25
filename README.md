@@ -1,10 +1,41 @@
 ### 项目功能
+---
+
 ```
 01 nginx配置文件，包括centos，ubuntu等系统中php，反向代理，子域名等环境设置
 02 v2ray配置文件，包括windows和linux系统中负载均衡，反向代理，cloudflare warp等设置
 ```
 
+
+### 项目结构
+---
+
+- **nginx_ubuntu.conf**
+
+nginx在ubuntu系统中的配置文件，考虑了php，子域名等环境配置
+
+ubuntu系统中php的安装，
+
+```
+apt update
+ 
+apt install php-fpm php-mysqlnd php-gd php-mbstring
+ 
+systemctl enable php7.4-fpm
+
+```
+
+
+ubuntu系统nginx配置文件路径
+
+```
+/etc/nginx/nginx.conf                # ubuntu系统配置文件路径
+
+```
+
+
 ### nginx配置文件
+---
 
 判断cenots系统中nginx配置文件语法是否正确的命令
 ```

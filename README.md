@@ -19,8 +19,12 @@ ubuntu系统中php的安装，
 ```
 apt update
  
-apt install php-fpm php-mysqlnd php-gd php-mbstring
- 
+apt install php-fpm php-mysqlnd php-gd php-mbstring     # 安装php和一些常用扩展      
+
+# apt install php php-cli php-fpm php-json php-common php-mysql php-zip php-gd php-mbstring php-curl php-xml php-pear php-bcmath
+
+php -v                                                  # 查看php版本
+
 systemctl enable php7.4-fpm
 
 ```

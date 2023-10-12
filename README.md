@@ -210,3 +210,9 @@ warp/v2ray配置文件
 
 ### sub.sh
 超算提交脚本
+
+
+
+# 参考资料
+
+- https://blog.csdn.net/qq_45659165/article/details/128746568

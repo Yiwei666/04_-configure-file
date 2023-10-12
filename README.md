@@ -22,7 +22,6 @@ systemctl enable php7.4-fpm
 
 ```
 
-
 - ubuntu系统nginx配置文件路径
 
 ```
@@ -30,6 +29,7 @@ systemctl enable php7.4-fpm
 ```
 
 - nginx_ubuntu.conf：nginx在ubuntu系统中的配置文件，考虑了php，子域名等环境配置
+
 
 **2. php配置文件**  
 
@@ -86,6 +86,11 @@ sudo apt install nginx
 4. 安装完成后，Nginx将自动启动。你可以使用以下命令检查Nginx的状态
 ``` 
 sudo systemctl status nginx           
+```
+- 查看nginx版本
+
+```
+nginx -v
 ```
 
 5. 设置开机自启动

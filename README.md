@@ -1,4 +1,4 @@
-### 项目功能
+# 项目功能
 ---
 
 ```
@@ -7,7 +7,7 @@
 ```
 
 
-### ubuntu安装PHP
+# ubuntu安装PHP
 ---
 
 - **nginx_ubuntu.conf**
@@ -36,7 +36,8 @@ ubuntu系统nginx配置文件路径
 /etc/nginx/nginx.conf                # ubuntu系统配置文件路径
 
 ```
-### ubuntu安装nginx
+
+# ubuntu安装nginx
 
 1. 打开终端，使用sudo命令以管理员权限运行以下命令，更新软件包列表
 ```
@@ -62,26 +63,23 @@ sudo systemctl enable nginx
 
 6. 修改nginx配置文件
 
-
-### nginx配置文件
----
-
-判断cenots系统中nginx配置文件语法是否正确的命令
+- 判断cenots系统中nginx配置文件语法是否正确的命令
 ```
 nginx -t
 ```
 
-nginx配置文件路径
+- nginx配置文件路径
 ```
 /etc/nginx/nginx.conf         # ubuntu系统
 ```
 
-注意事项：   
+- 注意事项：   
 1. ubuntu系统和centos系统的配置文件略有不同，总体一样，server中的部分基本可以复制，需要注意的地方会强调，比如    
 ```
 user nginx;          # centos系统默认user
 user www-data;       # ubuntu系统默认www-data
 ```
+
 
 **2. php配置文件**  
 

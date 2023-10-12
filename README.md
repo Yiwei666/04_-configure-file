@@ -1,5 +1,5 @@
 # 项目功能
----
+
 
 ```
 01 nginx配置文件，包括centos，ubuntu等系统中php，反向代理，子域名等环境设置
@@ -8,13 +8,8 @@
 
 
 # ubuntu安装PHP
----
 
-- **nginx_ubuntu.conf**
-
-nginx在ubuntu系统中的配置文件，考虑了php，子域名等环境配置
-
-ubuntu系统中php的安装，
+**1. ubuntu系统中php的安装**
 
 ```
 apt update
@@ -30,12 +25,52 @@ systemctl enable php7.4-fpm
 ```
 
 
-ubuntu系统nginx配置文件路径
+- ubuntu系统nginx配置文件路径
 
 ```
 /etc/nginx/nginx.conf                # ubuntu系统配置文件路径
+```
+
+- nginx_ubuntu.conf：nginx在ubuntu系统中的配置文件，考虑了php，子域名等环境配置
+
+**2. php配置文件**  
+
+对于centos系统（digitalocean），php部分的配置为   
+```
+        location ~ \.php$ {
+        	root /home/01_html;                                                                          # 注意修改php文件根目录
+        	try_files $uri =404;
+        	fastcgi_pass unix:/var/run/php-fpm/www.sock;
+        	fastcgi_index index.php;
+        	fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        	include fastcgi_params;
+        }
+```
+
+对于ubuntu系统（azure），php部分的配置为
+```
+        location ~ \.php$ {
+            root /home/01_html;                                                                            # 注意修改php文件根目录
+#            try_files $uri =404;                                                                          # 删除
+            fastcgi_pass unix:/run/php/php7.4-fpm.sock;                                                    # 修改
+#            fastcgi_index index.php;                                                                      # 删除
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include fastcgi_params;
+            include snippets/fastcgi-php.conf;                                                             # 新增
+        }
+```
+相比于centos，有删除，新增和修改。注意修改php文件根目录
+
+php安装后的测试脚本
 
 ```
+<?php
+phpinfo();
+
+```
+
+将上述代码命名为 php-info.php
+
 
 # ubuntu安装nginx
 
@@ -81,43 +116,7 @@ user www-data;       # ubuntu系统默认www-data
 ```
 
 
-**2. php配置文件**  
 
-对于centos系统（digitalocean），php部分的配置为   
-```
-        location ~ \.php$ {
-        	root /home/01_html;                                                                          # 注意修改php文件根目录
-        	try_files $uri =404;
-        	fastcgi_pass unix:/var/run/php-fpm/www.sock;
-        	fastcgi_index index.php;
-        	fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        	include fastcgi_params;
-        }
-```
-
-对于ubuntu系统（azure），php部分的配置为
-```
-        location ~ \.php$ {
-            root /home/01_html;                                                                            # 注意修改php文件根目录
-#            try_files $uri =404;                                                                          # 删除
-            fastcgi_pass unix:/run/php/php7.4-fpm.sock;                                                    # 修改
-#            fastcgi_index index.php;                                                                      # 删除
-            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-            include fastcgi_params;
-            include snippets/fastcgi-php.conf;                                                             # 新增
-        }
-```
-相比于centos，有删除，新增和修改。注意修改php文件根目录
-
-php安装后的测试脚本
-
-```
-<?php
-phpinfo();
-
-```
-
-将上述代码命名为 php-info.php
 
 
 **3. nginx配置文件中同时使用主域名和子域名**

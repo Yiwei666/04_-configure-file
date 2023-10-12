@@ -1,10 +1,8 @@
 # 项目功能
 
-
-```
-01 nginx配置文件，包括centos，ubuntu等系统中php，反向代理，子域名等环境设置
-02 v2ray配置文件，包括windows和linux系统中负载均衡，反向代理，cloudflare warp等设置
-```
+1. ubuntu/centos系统中nginx/php的安装
+2. nginx配置文件，包括centos，ubuntu等系统中php，反向代理，子域名等环境设置
+3. v2ray配置文件，包括windows和linux系统中负载均衡，反向代理，cloudflare warp等设置
 
 
 # ubuntu安装PHP

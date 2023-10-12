@@ -36,6 +36,31 @@ ubuntu系统nginx配置文件路径
 /etc/nginx/nginx.conf                # ubuntu系统配置文件路径
 
 ```
+### ubuntu安装nginx
+
+1. 打开终端，使用sudo命令以管理员权限运行以下命令，更新软件包列表
+```
+sudo apt update                       
+```
+
+2. 安装Nginx
+```
+sudo apt install nginx                
+```
+
+3. 安装过程中，系统会要求你确认安装。按下Y键并按回车键继续安装。
+
+4. 安装完成后，Nginx将自动启动。你可以使用以下命令检查Nginx的状态
+``` 
+sudo systemctl status nginx           
+```
+
+5. 设置开机自启动
+```
+sudo systemctl enable nginx           
+```
+
+6. 修改nginx配置文件
 
 
 ### nginx配置文件

@@ -111,13 +111,12 @@ nginx -t
 ```
 
 - 注意事项：   
-1. ubuntu系统和centos系统的配置文件略有不同，总体一样，server中的部分基本可以复制，需要注意的地方会强调，比如    
+
+ubuntu系统和centos系统的配置文件略有不同，总体一样，server中的部分基本可以复制，需要注意的地方会强调，比如    
 ```
 user nginx;          # centos系统默认user
 user www-data;       # ubuntu系统默认www-data
 ```
-
-
 
 
 
@@ -150,6 +149,22 @@ server {
 }
 
 ```
+
+- **使用80端口的ubuntu/centos Nginx配置文件**
+
+```
+   server {
+       listen 80;
+       server_name 120.46.81.42;   # 服务器ip地址
+
+       location / {
+           root /home/01_html;       # 指定的服务器根目录，注意不要选择root目录，一般用home目录
+           index /01_tecent1017/index.html;      # 访问ip默认显示的网页，该网页需要置于上述根目录下
+       }
+}
+```
+
+
 
 **4. 例如将本地回环地址8000端口的服务反向代理到api.domian.com子域名上**  
 

@@ -66,7 +66,6 @@ php安装后的测试脚本
 ```
 <?php
 phpinfo();
-
 ```
 
 将上述代码命名为 php-info.php

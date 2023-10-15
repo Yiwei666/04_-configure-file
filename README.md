@@ -73,7 +73,7 @@ systemctl enable php7.4-fpm
 find /run -name "php7.4-fpm.sock"
 ```
 
-2.如果该路径下不存在`php7.4-fpm.sock`文件，需要在PHP-FPM配置文件 `/etc/php/7.4/fpm/php-fpm.conf` 中找到listen选项，然后listen值作为fastcgi_pass。
+2. 如果该路径下不存在`php7.4-fpm.sock`文件，需要在PHP-FPM配置文件 `/etc/php/7.4/fpm/php-fpm.conf` 中找到listen选项，然后listen值作为fastcgi_pass。
 
 相关查找和查看命令如下
 

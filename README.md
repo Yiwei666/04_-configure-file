@@ -160,6 +160,35 @@ grep listen /etc/php/7.4/fpm/pool.d/www.conf        # 查找 www.conf 中 listen
         }
 ```
 
+相应地，在 `/etc/php/7.4/fpm/pool.d/www.conf` 文件中也能找到 liste对应值为`listen = /run/php/php7.4-fpm.sock` 
+
+```
+(base) root@hcss-ecs-f0c3:/home# grep listen /etc/php/7.4/fpm/pool.d/www.conf
+; - 'listen' (unixsocket)
+;   'ip.add.re.ss:port'    - to listen on a TCP socket to a specific IPv4 address on
+;   '[ip:6:addr:ess]:port' - to listen on a TCP socket to a specific IPv6 address on
+;   'port'                 - to listen on a TCP socket to all addresses
+;   '/path/to/unix/socket' - to listen on a unix socket.
+listen = /run/php/php7.4-fpm.sock
+; Set listen(2) backlog.
+;listen.backlog = 511
+listen.owner = www-data
+listen.group = www-data
+;listen.mode = 0660
+; When set, listen.owner and listen.group are ignored
+;listen.acl_users =
+;listen.acl_groups =
+; PHP FCGI (5.2.2+). Makes sense only with a tcp listening socket. Each address
+;listen.allowed_clients = 127.0.0.1
+;   listen queue         - the number of request in the queue of pending
+;                          connections (see backlog in listen(2));
+;   max listen queue     - the maximum number of requests in the queue
+;   listen queue len     - the size of the socket queue of pending connections;
+;   listen queue:         0
+;   max listen queue:     1
+;   listen queue len:     42
+```
+
 相比于centos，有删除，新增和修改。注意修改php文件根目录
 
 

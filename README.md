@@ -50,7 +50,7 @@ find /etc -name "www.conf"                  # 查找 /etc 文件夹下 www.conf 
 grep listen /etc/php-fpm.d/www.conf         # 查找 www.conf 中 listen关键词
 ```
 
-示例显示结果如下
+相应地，在 `/etc/php-fpm.d/www.conf` 文件中也能找到 liste对应值为 `listen = listen = 127.0.0.1:9000`
 
 ```
 ;   'ip.add.re.ss:port'    - to listen on a TCP socket to a specific address on
@@ -189,7 +189,7 @@ listen.group = www-data
 ;   listen queue len:     42
 ```
 
-相比于centos，有删除，新增和修改。注意修改php文件根目录
+相比于centos，`www.conf` 配置文件地路径是不一样的，`location ~ \.php`有删除，新增和修改。注意修改php文件根目录
 
 
 - php安装后的测试脚本

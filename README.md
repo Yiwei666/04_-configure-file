@@ -189,7 +189,7 @@ listen.group = www-data
 ;   listen queue len:     42
 ```
 
-相比于centos，`www.conf` 配置文件地路径是不一样的，`location ~ \.php`有删除，新增和修改。注意修改php文件根目录
+相比于centos，`www.conf` 配置文件的路径是不一样的，`location ~ \.php`有删除，新增和修改。注意修改php文件根目录
 
 
 - php安装后的测试脚本

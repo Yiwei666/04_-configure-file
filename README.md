@@ -36,7 +36,37 @@ systemctl enable php7.4-fpm
 🟢 centos系统中php环境配置
 
 注意：
-1. 对于centos，首先核对`/var/run/php-fpm/www.sock`路径，如果该路径下不存在`www.sock`文件，需要在PHP-FPM配置文件 `php.ini` 中找到listen选项，然后listen值作为fastcgi_pass。
+1. 对于centos，首先核对`/var/run/php-fpm/www.sock`路径下，是否存在 `www.sock` 文件
+
+```
+ls /var/run/php-fpm/
+```
+
+2. 如果该路径下不存在`www.sock`文件，需要在PHP-FPM配置文件 `/etc/php-fpm.d/www.conf` 中找到listen选项，然后listen值作为fastcgi_pass。
+
+```
+find /etc -name "www.conf"                  # 查找 /etc 文件夹下 www.conf 配置文件的位置
+
+grep listen /etc/php-fpm.d/www.conf         # 查找 www.conf 中 listen关键词
+```
+
+示例显示结果如下
+
+```
+;   'ip.add.re.ss:port'    - to listen on a TCP socket to a specific address on
+;   'port'                 - to listen on a TCP socket to all addresses on a
+;   '/path/to/unix/socket' - to listen on a unix socket.
+listen = 127.0.0.1:9000
+; Set listen(2) backlog. A value of '-1' means unlimited.
+;listen.backlog = -1
+; PHP FCGI (5.2.2+). Makes sense only with a tcp listening socket. Each address
+listen.allowed_clients = 127.0.0.1
+;listen.owner = nobody
+;listen.group = nobody
+;listen.mode = 0666
+listen.owner = nginx
+listen.group = nginx
+```
 
 对于 centos系统（digitalocean）中nginx配置部分，相应php部分的配置为   
 
@@ -52,11 +82,11 @@ systemctl enable php7.4-fpm
 
 ```
 
-2. 如果该路径下存在`www.sock`文件，可以在按照如下语法在nginx配置文件中进行location添加。
+3. 如果该路径下存在`www.sock`文件，可以在按照如下语法在nginx配置文件中进行location添加。
 
 ```
         location ~ \.php$ {
-        	root /home/01_html;                                                                          # 注意修改php文件根目录
+        	root /home/01_html;                                                         # 注意修改php文件根目录
         	try_files $uri =404;
         	fastcgi_pass unix:/var/run/php-fpm/www.sock;
         	fastcgi_index index.php;
@@ -70,6 +100,8 @@ systemctl enable php7.4-fpm
 1. 对于 ubuntu，首先核对`/run/php/php7.4-fpm.sock`路径
 
 ```
+ls /run/php/
+
 find /run -name "php7.4-fpm.sock"
 ```
 

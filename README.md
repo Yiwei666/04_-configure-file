@@ -95,6 +95,36 @@ listen.group = nginx
         }
 ```
 
+相应地，在 `/etc/php-fpm.d/www.conf` 文件中也能找到 liste对应值为`listen = /run/php-fpm/www.sock` 
+
+```
+(base) [root@centos-s-1vcpu-2gb-nyc1-01 05_douyinAsynDload]# grep listen /etc/php-fpm.d/www.conf
+; - 'listen' (unixsocket)
+;   'ip.add.re.ss:port'    - to listen on a TCP socket to a specific IPv4 address on
+;   '[ip:6:addr:ess]:port' - to listen on a TCP socket to a specific IPv6 address on
+;   'port'                 - to listen on a TCP socket to all addresses
+;   '/path/to/unix/socket' - to listen on a unix socket.
+listen = /run/php-fpm/www.sock
+; Set listen(2) backlog.
+;listen.backlog = 511
+listen.owner = nginx
+listen.group = nginx
+;listen.mode = 0660
+; When set, listen.owner and listen.group are ignored
+listen.acl_users = apache,nginx
+;listen.acl_groups =
+; PHP FCGI (5.2.2+). Makes sense only with a tcp listening socket. Each address
+listen.allowed_clients = 127.0.0.1
+;   listen queue         - the number of request in the queue of pending
+;                          connections (see backlog in listen(2));
+;   max listen queue     - the maximum number of requests in the queue
+;   listen queue len     - the size of the socket queue of pending connections;
+;   listen queue:         0
+;   max listen queue:     1
+;   listen queue len:     42
+```
+
+
 🟢 ubuntu系统中php环境配置
 
 1. 对于 ubuntu，首先核对`/run/php/php7.4-fpm.sock`路径
@@ -141,6 +171,7 @@ phpinfo();
 ```
 
 将上述代码命名为 php-info.php
+
 
 **3. 使用会话（session）跟踪用户登录状态**
 

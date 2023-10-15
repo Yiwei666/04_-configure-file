@@ -35,11 +35,23 @@ systemctl enable php7.4-fpm
 
 注意：
 1. 对于centos，首先核对`/var/run/php-fpm/www.sock`路径，如果该路径下不存在`www.sock`文件，需要在PHP-FPM配置文件 `php.ini` 中找到listen选项，然后listen值作为fastcgi_pass。
+
+对于 centos系统（digitalocean）中nginx配置部分，相应php部分的配置为   
+
+```
+        location ~ \.php$ {
+            root /home/01_html;
+            try_files $uri =404;
+            fastcgi_pass 127.0.0.1:9000;
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include fastcgi_params;
+        }
+
+```
+
 2. 如果该路径下存在`www.sock`文件，可以在按照如下语法在nginx配置文件中进行location添加。
 
-
-
-对于 centos系统（digitalocean），php部分的配置为   
 ```
         location ~ \.php$ {
         	root /home/01_html;                                                                          # 注意修改php文件根目录

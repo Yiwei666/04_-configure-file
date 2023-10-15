@@ -68,6 +68,36 @@ phpinfo();
 
 将上述代码命名为 php-info.php
 
+**3. 使用会话（session）跟踪用户登录状态**
+
+```php
+<?php
+session_start();
+// If the user is not logged in, redirect to the login page
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+  header('Location: login.php');
+  exit;
+}
+
+// If the user clicked the logout link, log them out and redirect to the login page
+if (isset($_GET['logout'])) {
+  session_destroy(); // destroy all session data
+  header('Location: login.php');
+  exit;
+}
+```
+
+1. 在PHP中，会话超时时间的设置在 php.ini 文件中。你可以搜索 `session.gc_maxlifetime` 这个配置项，它表示会话的最大生命周期，以秒为单位。默认值可能是比较小的，比如 1440 秒（24分钟）。
+
+2. 如果你想延长会话的持续时间，你可以将这个值设置为更大的数值。比如，将其设置为 3600 表示会话在一个小时内不会过期。
+
+3. 请记得在修改 php.ini 文件后，你需要重新启动你的 Web 服务器才能使修改生效。
+
+```
+systemctl restart nginx
+```
+
+
 
 # ubuntu安装nginx
 

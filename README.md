@@ -89,17 +89,20 @@ if (isset($_GET['logout'])) {
 
 1. 在PHP中，会话超时时间的设置在 `php.ini` 文件中。你可以搜索 `session.gc_maxlifetime` 这个配置项，它表示会话的最大生命周期，以秒为单位。默认值可能是比较小的，比如 1440 秒（24分钟）。
 
-   - 对于ubuntu系统，`php.ini`通常位于`/etc/php/7.4/fpm/php.ini`目录，相关参数如下
+   - 对于ubuntu系统，`php.ini`通常位于`/etc/php/7.4/fpm/php.ini`目录，
+
+     相关参数如下：
     
-    ```
-    session.gc_maxlifetime = 3600
-    ;       setting session.gc_maxlifetime to 1440 (1440 seconds = 24 minutes):
-    ```
+     ```
+     session.gc_maxlifetime = 3600
+     ;       setting session.gc_maxlifetime to 1440 (1440 seconds = 24 minutes):
+     ```
     
-    查找相关关键词的命令如下
-    ```
-    grep  session.gc_maxlifetime  /etc/php/7.4/fpm/php.ini
-    ```
+     查找相关关键词的命令如下
+   
+     ```
+     grep  session.gc_maxlifetime  /etc/php/7.4/fpm/php.ini
+     ```
 
    - 对于centos系统，`php.ini`通常位于`/etc/php.ini`目录
 

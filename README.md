@@ -33,7 +33,7 @@ systemctl enable php7.4-fpm
 
 **2. php配置文件**  
 
-🟢 centos
+🟢 centos系统中php环境配置
 
 注意：
 1. 对于centos，首先核对`/var/run/php-fpm/www.sock`路径，如果该路径下不存在`www.sock`文件，需要在PHP-FPM配置文件 `php.ini` 中找到listen选项，然后listen值作为fastcgi_pass。
@@ -65,10 +65,25 @@ systemctl enable php7.4-fpm
         }
 ```
 
-🟢 ubuntu
+🟢 ubuntu系统中php环境配置
 
-1. 对于 ubuntu，首先核对`/run/php/php7.4-fpm.sock`路径，如果该路径下不存在`php7.4-fpm.sock`文件，需要在PHP-FPM配置文件 `php.ini` 中找到listen选项，然后listen值作为fastcgi_pass。
-2. 如果该路径下存在`php7.4-fpm.sock`文件，可以在按照如下语法在nginx配置文件中进行location添加。
+1. 对于 ubuntu，首先核对`/run/php/php7.4-fpm.sock`路径
+
+```
+find /run -name "php7.4-fpm.sock"
+```
+
+2.如果该路径下不存在`php7.4-fpm.sock`文件，需要在PHP-FPM配置文件 `/etc/php/7.4/fpm/php-fpm.conf` 中找到listen选项，然后listen值作为fastcgi_pass。
+
+相关查找和查看命令如下
+
+```
+find /etc -name "php-fpm.conf"                   # 查找 /etc 文件夹下 php-fpm.conf 配置文件的位置
+
+grep listen /etc/php/7.4/fpm/php-fpm.conf        # 查找 php-fpm.conf 中 listen关键词
+```
+ 
+3. 如果该路径下存在`php7.4-fpm.sock`文件，可以在按照如下语法在nginx配置文件中进行location添加。
 
 对于ubuntu系统（azure），php部分的配置为
 ```

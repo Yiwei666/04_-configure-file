@@ -51,6 +51,9 @@ systemctl enable php7.4-fpm
         }
 ```
 
+1. 对于centos，首先核对`/run/php/php7.4-fpm.sock`路径，如果该路径下不存在`php7.4-fpm.sock`文件，需要在PHP-FPM配置文件 `php.ini` 中找到listen选项，然后listen值作为fastcgi_pass。
+2. 如果该路径下存在`php7.4-fpm.sock`文件，可以在按照如下语法在nginx配置文件中进行location添加。
+
 对于ubuntu系统（azure），php部分的配置为
 ```
         location ~ \.php$ {

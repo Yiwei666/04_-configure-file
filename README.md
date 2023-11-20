@@ -9,7 +9,7 @@
 
 **1. ubuntu系统中php的安装**
 
-```
+```bash
 apt update
  
 apt install php-fpm php-mysqlnd php-gd php-mbstring     # 安装php和一些常用扩展      

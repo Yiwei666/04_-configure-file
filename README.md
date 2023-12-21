@@ -304,7 +304,8 @@ user www-data;       # ubuntu系统默认www-data
 
 
 ### 2. nginx配置文件中同时使用主域名和子域名
-```
+
+```nginx
 server {
     listen 443 ssl;
     server_name example.com www.example.com;
@@ -335,7 +336,7 @@ server {
 
 - **使用80端口的ubuntu/centos Nginx配置文件**
 
-```
+```nginx
    server {
        listen 80;
        server_name 120.46.81.42;   # 服务器ip地址
@@ -353,7 +354,7 @@ server {
 
 如果服务使用docker应用提供，那么docker应用配置文件中的域名也应当改为子域名，子域名server中ssl/tls证书路径可以使用与主域名相同的路径
 
-```
+```nginx
     server {
         listen 443 ssl;
         server_name api.domain.com; # 替换为您的域名

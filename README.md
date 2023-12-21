@@ -388,6 +388,11 @@ server {
 client_max_body_size 5M;                                                     # 默认允许nignx客户端上传的请求体、如文件, 最大为1MB
 ```
 
+修改该参数后请重启nginx
+
+```
+sudo systemctl restart nginx
+```
 
 1. 写在`server`块内
 

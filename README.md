@@ -394,6 +394,7 @@ client_max_body_size 5M;                                                     # �
 sudo systemctl restart nginx
 ```
 
+
 1. 写在`server`块内
 
 如果你想对整个服务器的所有请求设置相同的 `client_max_body_size`，可以将其写在 server 块内。这样会影响该服务器上的所有站点。
@@ -445,6 +446,7 @@ server {
             client_max_body_size 5M;                                                                       # 默认允许nignx客户端上传的请求体、如文件, 最大为1MB
         }
 ```
+
 
 3. 设置 `php.ini` 中对于文件上传大小的限制
 

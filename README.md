@@ -33,7 +33,7 @@ systemctl enable php7.4-fpm
 
 ### 2. php配置文件
 
-### 1. centos系统中php环境配置
+#### 1. centos系统中php环境配置
 
 注意：
 1. 对于centos，首先核对`/var/run/php-fpm/www.sock`路径下，是否存在 `www.sock` 文件
@@ -125,7 +125,7 @@ listen.allowed_clients = 127.0.0.1
 ```
 
 
-### 2. ubuntu系统中php环境配置
+#### 2. ubuntu系统中php环境配置
 
 1. 对于 ubuntu，首先核对`/run/php/php7.4-fpm.sock`路径
 
@@ -252,6 +252,8 @@ systemctl restart nginx
 
 # 3. ubuntu安装nginx
 
+### 1. 安装命令
+
 1. 打开终端，使用sudo命令以管理员权限运行以下命令，更新软件包列表
 ```
 sudo apt update                       
@@ -301,7 +303,7 @@ user www-data;       # ubuntu系统默认www-data
 
 
 
-**3. nginx配置文件中同时使用主域名和子域名**
+### 2. nginx配置文件中同时使用主域名和子域名
 ```
 server {
     listen 443 ssl;
@@ -347,7 +349,7 @@ server {
 
 
 
-**4. 例如将本地回环地址8000端口的服务反向代理到api.domian.com子域名上**  
+### 3. 例如将本地回环地址8000端口的服务反向代理到api.domian.com子域名上
 
 如果服务使用docker应用提供，那么docker应用配置文件中的域名也应当改为子域名，子域名server中ssl/tls证书路径可以使用与主域名相同的路径
 

@@ -1,13 +1,13 @@
-# 项目功能
+# 1. 项目功能
 
 1. ubuntu/centos系统中nginx/php的安装
 2. nginx配置文件，包括centos，ubuntu等系统中php，反向代理，子域名等环境设置
 3. v2ray配置文件，包括windows和linux系统中负载均衡，反向代理，cloudflare warp等设置
 
 
-# ubuntu安装PHP
+# 2. ubuntu安装PHP
 
-**1. ubuntu系统中php的安装**
+### 1. ubuntu系统中php的安装
 
 ```bash
 apt update
@@ -31,9 +31,9 @@ systemctl enable php7.4-fpm
 - nginx_ubuntu.conf：nginx在ubuntu系统中的配置文件，考虑了php，子域名等环境配置
 
 
-**2. php配置文件**  
+### 2. php配置文件
 
-🟢 centos系统中php环境配置
+### 1. centos系统中php环境配置
 
 注意：
 1. 对于centos，首先核对`/var/run/php-fpm/www.sock`路径下，是否存在 `www.sock` 文件
@@ -125,7 +125,7 @@ listen.allowed_clients = 127.0.0.1
 ```
 
 
-🟢 ubuntu系统中php环境配置
+### 2. ubuntu系统中php环境配置
 
 1. 对于 ubuntu，首先核对`/run/php/php7.4-fpm.sock`路径
 
@@ -202,7 +202,7 @@ phpinfo();
 将上述代码命名为 php-info.php
 
 
-**3. 使用会话（session）跟踪用户登录状态**
+### 3. 使用会话（session）跟踪用户登录状态
 
 ```php
 <?php
@@ -250,7 +250,7 @@ systemctl restart nginx
 
 
 
-# ubuntu安装nginx
+# 3. ubuntu安装nginx
 
 1. 打开终端，使用sudo命令以管理员权限运行以下命令，更新软件包列表
 ```
@@ -372,7 +372,7 @@ server {
 ```
 
 
-### v2ray配置文件
+# 4. v2ray配置文件
 
 linux中v2ray配置文件路径，配置方案：VMess-WS-TLS 
 ```
@@ -389,7 +389,8 @@ warp/v2ray配置文件
 [uuid generator](https://www.uuidgenerator.net/)
 
 
-### sub.sh
+# sub.sh
+
 超算提交脚本
 
 

@@ -248,9 +248,17 @@ if (isset($_GET['logout'])) {
 
 3. 请记得在修改 `php.ini` 文件后，你需要重新启动你的 Web 服务器才能使修改生效。
 
-```
+```sh
 systemctl restart nginx
 ```
+
+4. **重启 PHP-FPM 服务才能够使上述 `php.ini` 的修改生效**
+
+```sh
+service php7.4-fpm restart
+```
+
+仅重启nginx的web服务是不能够使其生效的
 
 
 
@@ -479,6 +487,8 @@ upload_max_filesize = 2M
 ```sh
 service php7.4-fpm restart
 ```
+
+仅重启nginx的web服务是不能够使其生效的
 
 
 # 4. v2ray配置文件

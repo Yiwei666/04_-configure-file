@@ -78,6 +78,7 @@ listen.group = nginx
             fastcgi_index index.php;
             fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
             include fastcgi_params;
+            client_max_body_size 5M;                                                     # 默认允许nignx客户端上传的请求体、如文件, 最大为1MB
         }
 
 ```
@@ -92,6 +93,7 @@ listen.group = nginx
         	fastcgi_index index.php;
         	fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         	include fastcgi_params;
+         client_max_body_size 5M;                                                     # 默认允许nignx客户端上传的请求体、如文件, 最大为1MB
         }
 ```
 
@@ -158,6 +160,7 @@ grep listen /etc/php/7.4/fpm/pool.d/www.conf        # 查找 www.conf 中 listen
             fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
             include fastcgi_params;
             include snippets/fastcgi-php.conf;                                                             # 新增
+            client_max_body_size 5M;                                                                       # 默认允许nignx客户端上传的请求体、如文件, 最大为1MB
         }
 ```
 
@@ -374,6 +377,60 @@ server {
         }
     }
 ```
+
+### 4.  设置 nginx 允许客户端上传的请求体（包括文件上传）的最大大小
+
+在 NGINX 配置文件中，`client_max_body_size` 参数的默认值通常是1m，表示1兆字节。这意味着默认情况下 NGINX 允许客户端上传的请求体（包括文件上传）的最大大小为1兆字节。
+
+如果没有显式地在配置文件中设置 client_max_body_size，NGINX 将使用这个默认值。如果你需要允许更大的请求体大小，你可以在 NGINX 的配置文件中显式地设置这个参数，如前面所述。
+
+```
+client_max_body_size 5M;                                                     # 默认允许nignx客户端上传的请求体、如文件, 最大为1MB
+```
+
+
+1. 写在`server`块内
+
+```nginx
+server {
+    # 其他配置项...
+
+    client_max_body_size 5M; # 将5M替换为你期望的最大请求体大小
+
+    location / {
+        # 其他配置项...
+    }
+}
+```
+
+
+
+2. 写在`location`块内
+
+```nginx
+server {
+    # 其他配置项...
+
+    location /upload {
+        client_max_body_size 5M; # 将5M替换为你期望的最大请求体大小
+
+        # 其他配置项...
+    }
+
+    location / {
+        # 其他配置项...
+    }
+}
+```
+
+
+
+
+
+
+
+
+
 
 
 # 4. v2ray配置文件

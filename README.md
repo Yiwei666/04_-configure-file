@@ -38,13 +38,13 @@ systemctl enable php7.4-fpm
 注意：
 1. 对于centos，首先核对`/var/run/php-fpm/www.sock`路径下，是否存在 `www.sock` 文件
 
-```
+```sh
 ls /var/run/php-fpm/
 ```
 
 2. 如果该路径下不存在`www.sock`文件，需要在PHP-FPM配置文件 `/etc/php-fpm.d/www.conf` 中找到listen选项，然后listen值作为fastcgi_pass。
 
-```
+```sh
 find /etc -name "www.conf"                  # 查找 /etc 文件夹下 www.conf 配置文件的位置
 
 grep listen /etc/php-fpm.d/www.conf         # 查找 www.conf 中 listen关键词
@@ -52,7 +52,7 @@ grep listen /etc/php-fpm.d/www.conf         # 查找 www.conf 中 listen关键�
 
 相应地，在 `/etc/php-fpm.d/www.conf` 文件中也能找到 liste对应值为 `listen = listen = 127.0.0.1:9000`
 
-```
+```ini
 ;   'ip.add.re.ss:port'    - to listen on a TCP socket to a specific address on
 ;   'port'                 - to listen on a TCP socket to all addresses on a
 ;   '/path/to/unix/socket' - to listen on a unix socket.
@@ -70,7 +70,7 @@ listen.group = nginx
 
 对于 centos系统（digitalocean）中nginx配置部分，相应php部分的配置为   
 
-```
+```nginx
         location ~ \.php$ {
             root /home/01_html;
             try_files $uri =404;
@@ -84,7 +84,7 @@ listen.group = nginx
 
 3. 如果该路径下存在`www.sock`文件，可以在按照如下语法在nginx配置文件中进行location添加。
 
-```
+```nginx
         location ~ \.php$ {
         	root /home/01_html;                                                         # 注意修改php文件根目录
         	try_files $uri =404;
@@ -97,7 +97,7 @@ listen.group = nginx
 
 相应地，在 `/etc/php-fpm.d/www.conf` 文件中也能找到 liste对应值为`listen = /run/php-fpm/www.sock` 
 
-```
+```ini
 (base) [root@centos-s-1vcpu-2gb-nyc1-01 05_douyinAsynDload]# grep listen /etc/php-fpm.d/www.conf
 ; - 'listen' (unixsocket)
 ;   'ip.add.re.ss:port'    - to listen on a TCP socket to a specific IPv4 address on
@@ -129,7 +129,7 @@ listen.allowed_clients = 127.0.0.1
 
 1. 对于 ubuntu，首先核对`/run/php/php7.4-fpm.sock`路径
 
-```
+```sh
 ls /run/php/
 
 find /run -name "php7.4-fpm.sock"
@@ -139,7 +139,7 @@ find /run -name "php7.4-fpm.sock"
 
 相关查找和查看命令如下
 
-```
+```sh
 find /etc -name "www.conf"                          # 查找 /etc 文件夹下 www.conf 配置文件的位置
 
 grep listen /etc/php/7.4/fpm/pool.d/www.conf        # 查找 www.conf 中 listen关键词
@@ -148,7 +148,8 @@ grep listen /etc/php/7.4/fpm/pool.d/www.conf        # 查找 www.conf 中 listen
 3. 如果该路径下存在`php7.4-fpm.sock`文件，可以在按照如下语法在nginx配置文件中进行location添加。
 
 对于ubuntu系统（azure），php部分的配置为
-```
+
+```nginx
         location ~ \.php$ {
             root /home/01_html;                                                                            # 注意修改php文件根目录
 #            try_files $uri =404;                                                                          # 删除
@@ -162,7 +163,7 @@ grep listen /etc/php/7.4/fpm/pool.d/www.conf        # 查找 www.conf 中 listen
 
 相应地，在 `/etc/php/7.4/fpm/pool.d/www.conf` 文件中也能找到 liste对应值为`listen = /run/php/php7.4-fpm.sock` 
 
-```
+```ini
 (base) root@hcss-ecs-f0c3:/home# grep listen /etc/php/7.4/fpm/pool.d/www.conf
 ; - 'listen' (unixsocket)
 ;   'ip.add.re.ss:port'    - to listen on a TCP socket to a specific IPv4 address on
@@ -194,7 +195,7 @@ listen.group = www-data
 
 - php安装后的测试脚本
 
-```
+```php
 <?php
 phpinfo();
 ```

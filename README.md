@@ -380,7 +380,7 @@ server {
 
 ### 4.  设置 nginx 允许客户端上传的请求体（包括文件上传）的最大大小
 
-在 NGINX 配置文件中，`client_max_body_size` 参数的默认值通常是1m，表示1兆字节。这意味着默认情况下 NGINX 允许客户端上传的请求体（包括文件上传）的最大大小为1兆字节。
+在 NGINX 配置文件`/etc/nginx/nginx.conf`（ubuntu）中，`client_max_body_size` 参数的默认值通常是1m，表示1兆字节。这意味着默认情况下 NGINX 允许客户端上传的请求体（包括文件上传）的最大大小为1兆字节。
 
 如果没有显式地在配置文件中设置 client_max_body_size，NGINX 将使用这个默认值。如果你需要允许更大的请求体大小，你可以在 NGINX 的配置文件中显式地设置这个参数，如前面所述。
 

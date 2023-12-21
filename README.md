@@ -474,7 +474,11 @@ post_max_size = 8M
 upload_max_filesize = 2M
 ```
 
+- **重启 PHP-FPM 服务才能够使上述 `php.ini` 的修改生效**
 
+```sh
+service php7.4-fpm restart
+```
 
 
 # 4. v2ray配置文件

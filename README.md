@@ -391,6 +391,8 @@ client_max_body_size 5M;                                                     # �
 
 1. 写在`server`块内
 
+如果你想对整个服务器的所有请求设置相同的 `client_max_body_size`，可以将其写在 server 块内。这样会影响该服务器上的所有站点。
+
 ```nginx
 server {
     # 其他配置项...
@@ -404,8 +406,9 @@ server {
 ```
 
 
-
 2. 写在`location`块内
+
+如果你只想对特定的路径或虚拟主机设置 `client_max_body_size`，则可以将其写在相应的 location 块内。
 
 ```nginx
 server {
@@ -423,11 +426,20 @@ server {
 }
 ```
 
+在这个例子中，client_max_body_size 只会影响 /upload 路径下的请求。
 
+- 以ubuntu系统中php脚本的请求为例
 
-
-
-
+```nginx
+        location ~ \.php$ {
+            root /home/01_html/;                                                                           # 注意修改php文件根目录
+            fastcgi_pass unix:/run/php/php7.4-fpm.sock;                                                    # 修改
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include fastcgi_params;
+            include snippets/fastcgi-php.conf;                                                             # 新增
+            client_max_body_size 5M;                                                                       # 默认允许nignx客户端上传的请求体、如文件, 最大为1MB
+        }
+```
 
 
 

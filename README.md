@@ -315,6 +315,28 @@ user www-data;       # ubuntu系统默认www-data
 ```
 
 
+7. 安全组设置
+
+- 入方向
+  - `SSH (22)`: 允许管理员通过加密的命令行终端对 Linux 服务器进行远程登录与配置管理。
+  - `CMP (Ping)`: 允许外部设备通过 Ping 命令检测服务器的网络响应状态及实时连通性。
+  - `HTTPS (443)`: 允许互联网用户通过加密的安全协议（SSL/TLS）访问服务器托管的网站。
+  - `HTTP (80)`: 允许互联网用户通过基础的非加密协议访问服务器提供的 Web 网页服务。
+  - `RDP (3389)`: 允许管理员通过图形化的远程桌面协议直接控制和操作 Windows 服务器。
+
+<p align="center">
+<img src="https://19640810.xyz/05_image/01_imageHost/20260407-150816.png" alt="Image Description" width="700">
+</p>
+
+
+
+- 出方向
+
+<p align="center">
+<img src="https://19640810.xyz/05_image/01_imageHost/20260407-152444.png" alt="Image Description" width="700">
+</p>
+
+
 
 ### 2. nginx配置文件中同时使用主域名和子域名
 

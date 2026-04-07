@@ -325,7 +325,7 @@ user www-data;       # ubuntu系统默认www-data
   - `RDP (3389)`: 允许管理员通过图形化的远程桌面协议直接控制和操作 Windows 服务器。
 
 <p align="center">
-<img src="https://19640810.xyz/05_image/01_imageHost/20260407-150816.png" alt="Image Description" width="700">
+<img src="https://19640810.xyz/05_image/01_imageHost/20260407-150816.png" alt="Image Description" width="800">
 </p>
 
 
@@ -333,7 +333,7 @@ user www-data;       # ubuntu系统默认www-data
 - 出方向
 
 <p align="center">
-<img src="https://19640810.xyz/05_image/01_imageHost/20260407-152444.png" alt="Image Description" width="700">
+<img src="https://19640810.xyz/05_image/01_imageHost/20260407-152444.png" alt="Image Description" width="800">
 </p>
 
 

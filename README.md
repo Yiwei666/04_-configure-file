@@ -18,7 +18,8 @@ apt install php-fpm php-mysqlnd php-gd php-mbstring     # 安装php和一些常�
 
 php -v                                                  # 查看php版本
 
-systemctl enable php7.4-fpm
+# systemctl enable php7.4-fpm
+systemctl enable php8.1-fpm
 
 ```
 

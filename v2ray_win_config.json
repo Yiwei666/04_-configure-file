@@ -12,11 +12,26 @@
         "auth": "noauth",
         "udp": false
       }
+    },
+    {
+      "port": 8080,
+      "listen": "127.0.0.1",
+      "protocol": "http",
+      "tag": "http-in",
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      },
+      "settings": {}
     }
   ],
   "outbounds": [
     {
       "protocol": "vmess",
+      "tag": "vmessproxy",
       "settings": {
         "vnext": [
           {

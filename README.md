@@ -5,7 +5,327 @@
 3. v2ray配置文件，包括windows和linux系统中负载均衡，反向代理，cloudflare warp等设置
 
 
-# 2. ubuntu安装PHP
+
+# 2. 文件结构
+
+```
+config_linux_relay.json          // linux端 v2ray 配置文件，支持出口分流加中转
+```
+
+
+# 3. v2ray配置文件
+
+## 1. 多出口分流
+
+1. 多出口分流没有中转（即出口流量要么直接出去，要么套一层warp，没有转发到另外一台云服务器），模板如下：
+
+```json
+{
+"sniffing": {
+    "enabled": true,
+    "destOverride": ["http", "tls"]
+},
+  "log": {
+    "loglevel": "warning",
+    "access": "/var/log/v2ray/access.log", 
+    "error": "/var/log/v2ray/error.log"
+  },  
+  "inbounds": [
+    {
+      "listen":"127.0.0.1",
+      "port": 10087,
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "bf4....id1.....67e",
+            "level": 1,
+            "alterId": 0
+          }
+        ]
+      },
+            "streamSettings": {
+                "network": "ws",
+                "wsSettings": {
+                "path": "/home/dir"
+                }
+            }
+    }
+  ],
+ "outbounds": [
+            {
+                "tag": "default",
+                "protocol": "freedom"
+            },
+            {
+                "tag":"socks_out",
+                "protocol": "socks",
+                "settings": {
+                    "servers": [
+                         {
+                            "address": "127.0.0.1",
+                            "port": 40000
+                        }
+                    ]
+                }
+            },
+            {
+            "tag":"my-tor",
+            "protocol": "socks",
+            "settings": {
+                "servers": [
+                     {
+                        "address": "127.0.0.1",
+                        "port": 9050
+                    }
+                ]
+            }
+        }
+    ],
+    "routing": {
+        "rules": [
+            {
+                "type": "field",
+                "outboundTag": "socks_out",
+                "domain": [
+                  "openai.com",
+                  "api.openai.com",
+                  "beta.openai.com",
+                  "blog.openai.com",
+                  "cdn.openai.com",
+                  "s3-us-west-2.amazonaws.com",
+                  "chat.openai.com",
+                  "ip138.com",
+                  "bing.com",
+                  "scholar.google.com",
+                  "whoer.net",
+                  "phind.com",
+                  "dlpanda.com",
+                  "tiktok.com",
+                  "github.com"
+                    ]
+            },
+            {
+                "type": "field",
+                "outboundTag": "my-tor",
+                "domain": ["onion"],
+                "network": "tcp"
+            },
+            {
+                "type": "field",
+                "outboundTag": "default",
+                "network": "udp,tcp"
+            }
+        ]
+    }
+}
+```
+
+## 2. 多出口分流加中转配置
+
+1. 多出口分流有中转，模板如下：
+
+```json
+{
+  "log": {
+    "loglevel": "warning",
+    "access": "/var/log/v2ray/access.log", 
+    "error": "/var/log/v2ray/error.log"
+  },  
+  "inbounds": [
+    {
+      "listen":"127.0.0.1",
+      "port": 10087,
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "bf4....id1.....67e",
+            "level": 1,
+            "alterId": 0
+          }
+        ]
+      },
+        "streamSettings": {
+            "network": "ws",
+            "wsSettings": {
+            "path": "/home/01_html"
+            }
+        },
+        "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      }
+    }
+  ],
+ "outbounds": [
+            {
+              "tag": "b1-google-egress",
+              "protocol": "vmess",
+              "settings": {
+                "vnext": [
+                  {
+                    "address": "...mydomain.com...",
+                    "port": 443,
+                    "users": [
+                      {
+                        "id": "c906....id2.......7bf",
+                        "alterId": 0,
+                        "security": "auto"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "streamSettings": {
+                "network": "ws",
+                "security": "tls",
+                "wsSettings": {
+                  "path": "/home/01_dir"
+                }
+              }
+            },
+            {
+                "tag": "default",
+                "protocol": "freedom"
+            },
+            {
+                "tag":"socks_out",
+                "protocol": "socks",
+                "settings": {
+                    "servers": [
+                         {
+                            "address": "127.0.0.1",
+                            "port": 40000
+                        }
+                    ]
+                }
+            },
+            {
+            "tag":"my-tor",
+            "protocol": "socks",
+            "settings": {
+                "servers": [
+                     {
+                        "address": "127.0.0.1",
+                        "port": 9050
+                    }
+                ]
+            }
+        }
+    ],
+    "routing": {
+        "rules": [
+          {
+            "type": "field",
+            "outboundTag": "b1-google-egress",
+            "domain": [
+              "geosite:google"
+            ]
+          },
+            {
+                "type": "field",
+                "outboundTag": "socks_out",
+                "domain": [
+                  "openai.com",
+                  "api.openai.com",
+                  "beta.openai.com",
+                  "blog.openai.com",
+                  "cdn.openai.com",
+                  "s3-us-west-2.amazonaws.com",
+                  "chat.openai.com",
+                  "ip138.com",
+                  "bing.com",
+                  "whoer.net",
+                  "phind.com",
+                  "dlpanda.com",
+                  "tiktok.com",
+                  "github.com",
+                  "news.ycombinator.com",
+                  "chatgpt.com",
+                  "facebook.com",
+                  "instagram.com",
+                  "yandex.com"
+                    ]
+            },
+            {
+                "type": "field",
+                "outboundTag": "my-tor",
+                "domain": ["onion"],
+                "network": "tcp"
+            },
+            {
+                "type": "field",
+                "outboundTag": "default",
+                "network": "udp,tcp"
+            }
+        ]
+    }
+}
+```
+
+2. 相比于没有中转，中转的实现主要添加了如下两部分：
+
+首先在出口`outbounds`中添加了如下部分，实现对另外一个落地vps服务器的连接。
+
+```json
+            {
+              "tag": "b1-google-egress",
+              "protocol": "vmess",
+              "settings": {
+                "vnext": [
+                  {
+                    "address": "...mydomain.com...",
+                    "port": 443,
+                    "users": [
+                      {
+                        "id": "c906....id2.......7bf",
+                        "alterId": 0,
+                        "security": "auto"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "streamSettings": {
+                "network": "ws",
+                "security": "tls",
+                "wsSettings": {
+                  "path": "/home/01_dir"
+                }
+              }
+            }
+```
+
+然后在路由`routing`中添加了如下规则（针对谷歌相关的域名进行中转，解决IP送中的问题），实现对特定域名流量的过滤。
+
+```
+          {
+            "type": "field",
+            "outboundTag": "b1-google-egress",
+            "domain": [
+              "geosite:google"
+            ]
+          }
+```
+
+3. 另外，推荐将`sniffing`写在`inbounds`列表中。
+
+```json
+        "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      }
+```
+
+
+# 4. ubuntu安装PHP
 
 ### 1. ubuntu系统中php的安装
 

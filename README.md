@@ -269,7 +269,7 @@ config_linux_relay.json          // linux端 v2ray 配置文件，支持出口�
 
 2. 相比于没有中转，中转的实现主要添加了如下两部分：
 
-首先在出口`outbounds`中添加了如下部分，实现对另外一个落地vps服务器的连接。
+首先在出口`outbounds`中添加了如下部分，实现对另外一个落地vps服务器的连接。注意修改`address`、`id`和`path`三个参数，分别对应落地服务器的域名，ID和路径。
 
 ```json
             {
@@ -302,7 +302,7 @@ config_linux_relay.json          // linux端 v2ray 配置文件，支持出口�
 
 然后在路由`routing`中添加了如下规则（针对谷歌相关的域名进行中转，解决IP送中的问题），实现对特定域名流量的过滤。
 
-```
+```json
           {
             "type": "field",
             "outboundTag": "b1-google-egress",

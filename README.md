@@ -9,6 +9,7 @@
 # 2. 文件结构
 
 ```
+v2ray_win_config.json            // windows端 v2ray 配置文件，支持 socks5协议1080入口 以及 http协议 8080 入口
 config_linux_relay.json          // linux端 v2ray 配置文件，支持出口分流加中转
 ```
 

@@ -15,7 +15,7 @@ config_linux_relay.json          // linux端 v2ray 配置文件，支持出口�
 
 # 3. v2ray配置文件
 
-## 1. 多出口分流
+### 1. 多出口分流
 
 1. 多出口分流没有中转（即出口流量要么直接出去，要么套一层warp，没有转发到另外一台云服务器），模板如下：
 
@@ -121,7 +121,7 @@ config_linux_relay.json          // linux端 v2ray 配置文件，支持出口�
 }
 ```
 
-## 2. 多出口分流加中转配置
+### 2. 多出口分流加中转配置
 
 1. 多出口分流有中转，模板如下：
 
@@ -168,7 +168,7 @@ config_linux_relay.json          // linux端 v2ray 配置文件，支持出口�
               "settings": {
                 "vnext": [
                   {
-                    "address": "...mydomain.com...",
+                    "address": "my...domain.com",
                     "port": 443,
                     "users": [
                       {
@@ -278,7 +278,7 @@ config_linux_relay.json          // linux端 v2ray 配置文件，支持出口�
               "settings": {
                 "vnext": [
                   {
-                    "address": "...mydomain.com...",
+                    "address": "my...domain.com",
                     "port": 443,
                     "users": [
                       {

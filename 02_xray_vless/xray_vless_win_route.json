@@ -1,0 +1,127 @@
+
+{
+  "log": {
+    "loglevel": "debug"
+  },
+  "inbounds": [
+    {
+      "listen": "127.0.0.1",
+      "port": 1080,
+      "protocol": "socks",
+      "settings": {
+        "udp": true
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ],
+        "routeOnly": false
+      }
+    },
+    {
+      "listen": "127.0.0.1",
+      "port": 8080,
+      "protocol": "http",
+      "settings": {
+        "timeout": 0
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ],
+        "routeOnly": true
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "vless",
+      "settings": {
+        "address": "...yourdomain.com",
+        "port": 443,
+        "id": "a....8",
+        "encryption": "none",
+        "flow": "xtls-rprx-vision"
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "fingerprint": "chrome",
+          "serverName": "...yourdomain.com",
+          "publicKey": "Q......I",
+          "spiderX": "/",
+          "shortId": "a........9"
+        }
+      },
+      "tag": "proxy"
+    },
+    {
+      "protocol": "freedom",
+      "tag": "direct",
+      "settings": {}
+    }
+  ],
+  "routing": {
+    "domainStrategy": "IPIfNonMatch",
+    "rules": [
+      {
+        "type": "field",
+        "outboundTag": "direct",
+        "domain": [
+          "domain:baidu.com",
+          "domain:zhihu.com",
+          "domain:notion.so",
+          "domain:csdn.net",
+          "domain:sciencedirect.com",
+          "domain:acs.org",
+          "domain:wiley.com",
+          "domain:nature.com",
+          "domain:rsc.org",
+          "domain:science.org",
+          "domain:springer.com",
+          "domain:taylorandfrancis.com",
+          "domain:aps.org",
+          "domain:mdpi.com",
+          "domain:cnki.net",
+          "domain:aip.org",
+          "domain:pnas.org",
+          "domain:keinsci.com",
+          "domain:sobereva.com"
+        ]
+      },
+      {
+        "type": "field",
+        "outboundTag": "proxy",
+        "domain": [
+          "domain:google.com",
+          "domain:ip138.com",
+          "domain:ipaddress.com",
+          "domain:douyin.com",
+          "domain:tiktok.com",
+          "domain:github.com"
+        ]
+      },
+      {
+        "type": "field",
+        "outboundTag": "direct",
+        "domain": [
+          "geosite:cn"
+        ]
+      },
+      {
+        "type": "field",
+        "outboundTag": "direct",
+        "ip": [
+          "geoip:cn",
+          "geoip:private"
+        ]
+      }
+    ]
+  }
+}

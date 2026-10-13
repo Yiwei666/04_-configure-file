@@ -33,7 +33,7 @@ xray_vless_win_route_IP.json         # windows端、包含http和socks5入口协
 // 按子字符串匹配
 "domain": ["baidu.com", "nature.com"]
 
-// 
+// 匹配域名及其子域名
 "domain": [
   "domain:baidu.com",
   "domain:nature.com"

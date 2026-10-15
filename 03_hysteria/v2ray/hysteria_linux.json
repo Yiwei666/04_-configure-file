@@ -1,0 +1,36 @@
+{
+  "log": {
+    "access": { "type": "None" },
+    "error": { "type": "Console", "level": "Warning" }
+  },
+  "inbounds": [
+    {
+      "tag": "hy2-in",
+      "listen": "0.0.0.0",
+      "port": 443,
+      "protocol": "hysteria2",
+      "settings": {},
+      "streamSettings": {
+        "transport": "hysteria2",
+        "transportSettings": {
+          "password": "CHANGE_ME_TO_A_LONG_RANDOM_PASSWORD",
+          "use_udp_extension": true,
+          "congestion": { "type": "bbr" }
+        },
+        "security": "tls",
+        "securitySettings": {
+          "nextProtocol": ["h3"],
+          "certificate": [
+            {
+              "certificateFile": "/etc/hy2/certs/fullchain.pem",
+              "keyFile": "/etc/hy2/certs/privkey.pem"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    { "tag": "direct", "protocol": "freedom", "settings": {} }
+  ]
+}

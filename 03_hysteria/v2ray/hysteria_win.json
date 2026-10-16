@@ -1,0 +1,44 @@
+{
+  "log": {
+    "access": { "type": "None" },
+    "error": { "type": "Console", "level": "Warning" }
+  },
+  "inbounds": [
+    {
+      "tag": "socks-in",
+      "listen": "127.0.0.1",
+      "port": 10808,
+      "protocol": "socks",
+      "settings": { "udpEnabled": true }
+    },
+    {
+      "tag": "http-in",
+      "listen": "127.0.0.1",
+      "port": 10809,
+      "protocol": "http",
+      "settings": {}
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "hy2-out",
+      "protocol": "hysteria2",
+      "settings": {
+        "server": [ { "address": "203.0.113.10", "port": 443 } ]
+      },
+      "streamSettings": {
+        "transport": "hysteria2",
+        "transportSettings": {
+          "password": "CHANGE_ME_TO_A_LONG_RANDOM_PASSWORD",
+          "use_udp_extension": true,
+          "congestion": { "type": "bbr" }
+        },
+        "security": "tls",
+        "securitySettings": {
+          "serverName": "hy2.example.com",
+          "nextProtocol": ["h3"]
+        }
+      }
+    }
+  ]
+}

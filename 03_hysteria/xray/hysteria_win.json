@@ -1,0 +1,47 @@
+{
+  "log": { "loglevel": "warning" },
+  "inbounds": [
+    {
+      "tag": "socks-in",
+      "listen": "127.0.0.1",
+      "port": 10808,
+      "protocol": "socks",
+      "settings": { "auth": "noauth", "udp": true }
+    },
+    {
+      "tag": "http-in",
+      "listen": "127.0.0.1",
+      "port": 10809,
+      "protocol": "http",
+      "settings": {}
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "hy2-out",
+      "protocol": "hysteria",
+      "settings": {
+        "version": 2,
+        "address": "203.0.113.10",
+        "port": 443
+      },
+      "streamSettings": {
+        "network": "hysteria",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "hy2.example.com",
+          "allowInsecure": false,
+          "minVersion": "1.3",
+          "alpn": ["h3"]
+        },
+        "hysteriaSettings": {
+          "version": 2,
+          "auth": "CHANGE_ME_TO_A_LONG_RANDOM_PASSWORD"
+        },
+        "finalmask": {
+          "quicParams": { "congestion": "bbr" }
+        }
+      }
+    }
+  ]
+}
